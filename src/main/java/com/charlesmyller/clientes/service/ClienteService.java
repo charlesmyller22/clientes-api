@@ -1,10 +1,20 @@
 package com.charlesmyller.clientes.service;
 
+import com.charlesmyller.clientes.entity.Cliente;
+import com.charlesmyller.clientes.repository.ClienteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ClienteService {
-    public String welcome(String nome) {
-        return nome;
+
+    @Autowired
+    ClienteRepository clienteRepository;
+    public Cliente salvar(Cliente cliente) throws Exception {
+        return clienteRepository.save(cliente);
+    }
+
+    public Cliente buscarPorId(Integer id) {
+        return clienteRepository.findById(id).get();
     }
 }
